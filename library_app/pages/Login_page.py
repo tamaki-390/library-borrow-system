@@ -4,6 +4,7 @@ import controller
  
 def render_login(): 
     st.title("🔐 เข้าสู่ระบบ") 
+ st.title("การงาน")
  
     with st.form("login_form"): 
         username = st.text_input("ชื่อผู้ใช้", placeholder="เช่น admin") 
@@ -22,4 +23,5 @@ def render_login():
             st.session_state["is_logged_in"] = True
             st.session_state["user"] = user_info 
             st.session_state["page"] = "books"  # หรือให้ไป borrows ก็ได้ 
+
             st.rerun()
