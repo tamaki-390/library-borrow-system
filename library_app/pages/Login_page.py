@@ -4,18 +4,11 @@ import controller
 def render_login():
 
     # 🔹 แสดงข้อมูลก่อน Login
-st.markdown(
-    """
-    <div style='text-align:center'>
-        <h2>📚 ระบบยืม-คืนหนังสือ</h2>
-        <h4>👨‍🎓 ข้อมูลผู้จัดทำ</h4>
-        <p>ชื่อ: ชินณชร พงษ์เพชร</p>
-        <p>รหัสนักศึกษา: 6501234567</p>
-        <p>หมู่เรียน: IT-01</p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+    st.markdown("## 📚 ระบบยืม-คืนหนังสือ")
+    st.markdown("### 👨‍🎓 ข้อมูลผู้จัดทำ")
+    st.write("ชื่อ: ชินณชร พงษ์เพชร")
+    st.write("รหัสนักศึกษา: 6501234567")
+    st.write("หมู่เรียน: IT-01")
 
     st.divider()
 
