@@ -2,6 +2,12 @@
 import sqlite3
 import pandas as pd
 
+import model
+
+model.ensure_base_schema()
+model.ensure_user_schema()
+
+
 DB_PATH = "library.db"
 
 def get_connection():
@@ -699,4 +705,5 @@ def ensure_base_schema():
 
     conn.commit()
     conn.close()
+
 
