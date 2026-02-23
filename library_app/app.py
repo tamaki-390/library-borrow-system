@@ -66,6 +66,13 @@ if not st.session_state["is_logged_in"]:
 st.title("📚 ระบบยืม-คืนหนังสือ (Streamlit + SQLite)")
 st.write("ตัวอย่าง Web App เชื่อมฐานข้อมูล (ปรับโครงสร้างแบบ MVC เชิงแนวคิด)")
 
+user = st.session_state.get("user")
+
+st.sidebar.markdown("### 👤 ข้อมูลผู้ใช้")
+st.sidebar.write("ชื่อ:", user.get("full_name"))
+st.sidebar.write("รหัส:", user.get("student_id"))
+st.sidebar.write("หมู่เรียน:", user.get("class_group"))
+
 # ✅ เพิ่มเติม: แสดงผู้ใช้ + ปุ่ม Logout 
 user = st.session_state.get("user") or {} 
 st.sidebar.markdown(f"👤 ผู้ใช้: **{user.get('username','-')}**")
@@ -189,3 +196,4 @@ elif st.session_state.page == "reports":
 else: 
     # fallback 
     book_page.render_book() 
+
