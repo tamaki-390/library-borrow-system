@@ -662,7 +662,7 @@ def ensure_user_schema():
     (count,) = c.fetchone()
 
     if count == 0:
-        default_pw = hashlib.sha256("admin123".encode()).hexdigest()
+        default_pw = hashlib.sha256("1234".encode()).hexdigest()
         c.execute(
             "INSERT INTO users (username, password_hash, role, is_active) VALUES (?, ?, ?, 1)",
             ("admin", default_pw, "admin")
@@ -670,3 +670,33 @@ def ensure_user_schema():
 
     conn.commit()
     conn.close()
+def ensure_base_schema():
+    conn = get_connection()
+    c = conn.cursor()
+
+    # ตาราง books
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS books (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        author TEXT,
+        status TEXT NOT NULL DEFAULT 'available'
+    )
+    """)
+
+    # ตาราง members
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS members (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        member_code TEXT UNIQUE,
+        name TEXT NOT NULL,
+        gender TEXT,
+        email TEXT,
+        phone TEXT,
+        is_active INTEGER NOT NULL DEFAULT 1
+    )
+    """)
+
+    conn.commit()
+    conn.close()
+
