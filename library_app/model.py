@@ -640,3 +640,33 @@ def ensure_user_schema():
 
     conn.commit()
     conn.close()
+
+import hashlib
+
+def ensure_user_schema():
+    conn = get_connection()
+    c = conn.cursor()
+
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE NOT NULL,
+        password_hash TEXT NOT NULL,
+        role TEXT NOT NULL DEFAULT 'staff',
+        is_active INTEGER NOT NULL DEFAULT 1
+    )
+    """)
+
+    # ตรวจว่ามี admin ยัง
+    c.execute("SELECT COUNT(*) FROM users")
+    (count,) = c.fetchone()
+
+    if count == 0:
+        default_pw = hashlib.sha256("1234".encode()).hexdigest()
+        c.execute(
+            "INSERT INTO users (username, password_hash, role, is_active) VALUES (?, ?, ?, 1)",
+            ("admin", default_pw, "admin")
+        )
+
+    conn.commit()
+    conn.close()
