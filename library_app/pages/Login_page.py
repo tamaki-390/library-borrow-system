@@ -4,7 +4,10 @@ import controller
  
 def render_login(): 
     st.title("🔐 เข้าสู่ระบบ") 
- st.title("การงาน")
+    st.subheader("ข้อมูลผู้จัดทำ")
+    st.write("ชื่อ: ชินณชร พงษ์เพชร")
+    st.write("รหัส: 6501234567")
+    st.write("หมู่เรียน: IT-01")
  
     with st.form("login_form"): 
         username = st.text_input("ชื่อผู้ใช้", placeholder="เช่น admin") 
@@ -25,3 +28,4 @@ def render_login():
             st.session_state["page"] = "books"  # หรือให้ไป borrows ก็ได้ 
 
             st.rerun()
+
