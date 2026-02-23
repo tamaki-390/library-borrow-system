@@ -622,4 +622,5 @@ def get_borrow_report(start_date: str, end_date: str, status: str):
  
     df = pd.read_sql_query(base_sql, conn, params=params) 
     conn.close() 
+
     return df 
