@@ -3,7 +3,10 @@ import controller
 
 def render_login():
 
-    # 🔹 แสดงข้อมูลก่อน Login
+    # 🔐 ฟอร์ม Login
+    st.title("🔐 เข้าสู่ระบบ")
+
+       # 🔹 แสดงข้อมูลก่อน Login
     st.markdown("## 📚 ระบบยืม-คืนหนังสือ")
     st.markdown("### 👨‍🎓 ข้อมูลผู้จัดทำ")
     st.write("ชื่อ: ชินณชร พงษ์เพชร")
@@ -11,10 +14,7 @@ def render_login():
     st.write("หมู่เรียน: IT-01")
 
     st.divider()
-
-    # 🔐 ฟอร์ม Login
-    st.title("🔐 เข้าสู่ระบบ")
-
+    
     with st.form("login_form"):
         username = st.text_input("ชื่อผู้ใช้", placeholder="เช่น admin")
         password = st.text_input("รหัสผ่าน", type="password", placeholder="เช่น 1234")
@@ -32,4 +32,5 @@ def render_login():
             st.session_state["is_logged_in"] = True
             st.session_state["user"] = user_info
             st.session_state["page"] = "books"
+
             st.rerun()
